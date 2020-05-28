@@ -1,6 +1,6 @@
 {
     "name": "ihah/webhook-notifier",
-    "description": "Allows to receive Gitlab webhooks for Laravel application and send notifications to the Slack channels",
+    "description": "Allows to receive Gitlab/Github webhooks for Laravel application and send notifications to the Slack/Discord channels",
     "keywords": [
         "ihah",
         "webhook-notifier"

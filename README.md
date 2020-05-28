@@ -1,24 +1,111 @@
 # Very short description of the package
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/ihah/gitlab-webhooks.svg?style=flat-square)](https://packagist.org/packages/ihah/gitlab-webhooks)
-[![Build Status](https://img.shields.io/travis/ihah/gitlab-webhooks/master.svg?style=flat-square)](https://travis-ci.org/ihah/gitlab-webhooks)
-[![Quality Score](https://img.shields.io/scrutinizer/g/ihah/gitlab-webhooks.svg?style=flat-square)](https://scrutinizer-ci.com/g/ihah/gitlab-webhooks)
-[![Total Downloads](https://img.shields.io/packagist/dt/ihah/gitlab-webhooks.svg?style=flat-square)](https://packagist.org/packages/ihah/gitlab-webhooks)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/ihah/webhook-notifier.svg?style=flat-square)](https://packagist.org/packages/ihah/webhook-notifier)
+[![Total Downloads](https://img.shields.io/packagist/dt/ihah/webhook-notifier.svg?style=flat-square)](https://packagist.org/packages/ihah/webhook-notifier)
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
+Packages allows to receive GitLab/Github webhook payloads for Laravel application and send notifications to multiple Slack/Discord channels based on payload type.
 
-## Installation
+One configuration to control all process, easy to setup.
+
+# Packages status: ***under development***
+
+## RoadMap:
+
+**GitLab:**
+- [x] GitLab push event
+- [ ] GitLab issue event
+- [ ] GitLab merge request event
+
+**GitHub:**
+- [ ] GitHub push event
+- [ ] GitHub issue event
+- [ ] GitHub merge request event
+
+**Slack:**
+- [x] GitLab push notification to multiple channels
+- [ ] GitLab issue notification to multiple channels
+- [ ] GitLab merge notification to multiple channels
+- [ ] GitHub push notification to multiple channels
+- [ ] GitHub issue notification to multiple channels
+- [ ] GitHub merge notification to multiple channels
+
+**Discord**:
+- [ ] GitLab push notification to multiple channels
+- [ ] GitLab issue notification to multiple channels
+- [ ] GitLab merge notification to multiple channels
+- [ ] GitHub push notification to multiple channels
+- [ ] GitHub issue notification to multiple channels
+- [ ] GitHub merge notification to multiple channels
+
+**Road Map:**
+- [ ] Implement events and listeners
+- [ ] Send notifications using queues  
+
+
+# Installation
 
 You can install the package via composer:
 
 ```bash
-composer require ihah/gitlab-webhooks
+composer require ihah/webhook-notifier
 ```
 
-## Usage
+**Publish config file**
+
+```bash
+php artisan vendor:publish --provider="Ihah\WebhookNotifier\WebhookNotifierServiceProvider" --tag=config
+```
+
+**Add webhook notifier routes.**
+
+```php
+// Recommended routes add to routes/api.php
+WebhookNotifier::routes();
+
+// It is possible to define multi middlewares for all routes
+WebhookNotifier::routes(['middlewares' => ['api']]);
+```
+
+
+# Usage
+
+## Gitlab + Slack
+
+1. Define `GITLAB_TOKEN` in .env file. 
+* `GITLAB_TOKEN` is used to check if request came from GitLab. 
+* `GITLAB_TOKEN` should be set as webhook **secret token** in GitLab [More information about GitLab webhooks](https://docs.gitlab.com/ee/user/project/integrations/webhooks.html).
+
+2. Config `../config/webhook-notifier.php` file
+* Slack incomming webook urls should be always defined in .env file because they contain secret to your channel and can be blocked if they are leaked. [More information about Slack Incoming Webhooks](https://api.slack.com/messaging/webhooks)
+* `all` array - send all supported notifications to defined channels
+* `push` array - send all push notifications to defined channels
+
 
 ``` php
-// Usage description here
+// .../config/webhook-notifier.php
+
+'gitlab_token' => env('GITLAB_TOKEN'),
+    'slack' => [
+        'channels' => [
+            'all' => [
+                [
+                    'name' => 'ricks-gitlab-channel',
+                    'url' => env('RICKS_SLACK_CHANNEL_URL')
+                ]
+            ],
+
+            'push' => [
+                [
+                    'name' => 'toms-gitlab-channel',
+                    'url' => env('TOMS_SLACK_CHANNEL_URL')
+                ],
+                [
+                    'name' => 'jams-gitlab-channel',
+                    'url' => env('JAMS_SLACK_CHANNEL_URL')
+                ],
+            ]
+        ],
+    ],
 ```
 
 ### Testing
@@ -30,10 +117,6 @@ composer test
 ### Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
-
-## Contributing
-
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ### Security
 
@@ -47,7 +130,3 @@ If you discover any security related issues, please email ernestasdev@gmail.com 
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
-
-## Laravel Package Boilerplate
-
-This package was generated using the [Laravel Package Boilerplate](https://laravelpackageboilerplate.com).
