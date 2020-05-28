@@ -1,0 +1,54 @@
+{
+    "name": "ihah/gitlab-webhooks",
+    "description": "Allows to receive Gitlab webhooks for Laravel application and send notifications to the Slack channels",
+    "keywords": [
+        "ihah",
+        "gitlab-webhooks"
+    ],
+    "homepage": "https://github.com/ihah/gitlab-webhooks",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Ernestas",
+            "email": "ernestasdev@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "illuminate/support": "^6.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^4.0",
+        "phpunit/phpunit": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ihah\\GitlabWebhooks\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Ihah\\GitlabWebhooks\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Ihah\\GitlabWebhooks\\GitlabWebhooksServiceProvider"
+            ],
+            "aliases": {
+                "GitlabWebhooks": "Ihah\\GitlabWebhooks\\GitlabWebhooksFacade"
+            }
+        }
+    }
+}
