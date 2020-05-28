@@ -3,3 +3,5 @@ composer.lock
 docs
 vendor
 coverage
+storage
+.phpunit.result.cache

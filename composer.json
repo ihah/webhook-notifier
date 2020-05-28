@@ -1,11 +1,11 @@
 {
-    "name": "ihah/gitlab-webhooks",
+    "name": "ihah/webhook-notifier",
     "description": "Allows to receive Gitlab webhooks for Laravel application and send notifications to the Slack channels",
     "keywords": [
         "ihah",
-        "gitlab-webhooks"
+        "webhook-notifier"
     ],
-    "homepage": "https://github.com/ihah/gitlab-webhooks",
+    "homepage": "https://github.com/ihah/webhook-notifier",
     "license": "MIT",
     "type": "library",
     "authors": [
@@ -16,21 +16,23 @@
         }
     ],
     "require": {
-        "php": "^7.1",
-        "illuminate/support": "^6.0"
+        "php": "^7.2.5",
+        "guzzlehttp/guzzle": "^6.5",
+        "illuminate/support": "^7.0"
     },
     "require-dev": {
-        "orchestra/testbench": "^4.0",
+        "barryvdh/laravel-ide-helper": "^2.7",
+        "orchestra/testbench": "^5.0",
         "phpunit/phpunit": "^8.0"
     },
     "autoload": {
         "psr-4": {
-            "Ihah\\GitlabWebhooks\\": "src"
+            "Ihah\\WebhookNotifier\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Ihah\\GitlabWebhooks\\Tests\\": "tests"
+            "Ihah\\WebhookNotifier\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -41,13 +43,14 @@
     "config": {
         "sort-packages": true
     },
+    "prefer-stable": true,
     "extra": {
         "laravel": {
             "providers": [
-                "Ihah\\GitlabWebhooks\\GitlabWebhooksServiceProvider"
+                "Ihah\\WebhookNotifier\\WebhookNotifierServiceProvider"
             ],
             "aliases": {
-                "GitlabWebhooks": "Ihah\\GitlabWebhooks\\GitlabWebhooksFacade"
+                "WebhookNotifier": "Ihah\\WebhookNotifier\\Facades\\WebhookNotifierFacade"
             }
         }
     }

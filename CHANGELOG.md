@@ -2,6 +2,6 @@
 
 All notable changes to `gitlab-webhooks` will be documented in this file
 
-## 1.0.0 - 201X-XX-XX
+## 0.0.1 - 2020-05-28
 
-- initial release
+- 0.0.1v release
