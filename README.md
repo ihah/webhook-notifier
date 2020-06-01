@@ -9,38 +9,6 @@ One configuration to control all process, easy to setup.
 
 # Packages status: ***under development***
 
-## RoadMap:
-
-**GitLab:**
-- [x] GitLab push event
-- [ ] GitLab issue event
-- [ ] GitLab merge request event
-
-**GitHub:**
-- [ ] GitHub push event
-- [ ] GitHub issue event
-- [ ] GitHub merge request event
-
-**Slack:**
-- [x] GitLab push notification to multiple channels
-- [ ] GitLab issue notification to multiple channels
-- [ ] GitLab merge notification to multiple channels
-- [ ] GitHub push notification to multiple channels
-- [ ] GitHub issue notification to multiple channels
-- [ ] GitHub merge notification to multiple channels
-
-**Discord**:
-- [ ] GitLab push notification to multiple channels
-- [ ] GitLab issue notification to multiple channels
-- [ ] GitLab merge notification to multiple channels
-- [ ] GitHub push notification to multiple channels
-- [ ] GitHub issue notification to multiple channels
-- [ ] GitHub merge notification to multiple channels
-
-**Road Map:**
-- [ ] Implement events and listeners
-- [ ] Send notifications using queues  
-
 
 # Installation
 
@@ -113,6 +81,39 @@ WebhookNotifier::routes(['middlewares' => ['api']]);
 ``` bash
 composer test
 ```
+
+## RoadMap:
+
+**GitLab:**
+- [x] GitLab push event
+- [ ] GitLab issue event
+- [ ] GitLab merge request event
+
+**GitHub:**
+- [ ] GitHub push event
+- [ ] GitHub issue event
+- [ ] GitHub merge request event
+
+**Slack:**
+- [x] GitLab push notification to multiple channels
+- [ ] GitLab issue notification to multiple channels
+- [ ] GitLab merge notification to multiple channels
+- [ ] GitHub push notification to multiple channels
+- [ ] GitHub issue notification to multiple channels
+- [ ] GitHub merge notification to multiple channels
+
+**Discord**:
+- [ ] GitLab push notification to multiple channels
+- [ ] GitLab issue notification to multiple channels
+- [ ] GitLab merge notification to multiple channels
+- [ ] GitHub push notification to multiple channels
+- [ ] GitHub issue notification to multiple channels
+- [ ] GitHub merge notification to multiple channels
+
+**Other:**
+- [ ] Support events and listeners
+- [ ] Send notifications using queues  
+
 
 ### Changelog
 
