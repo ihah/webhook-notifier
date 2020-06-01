@@ -3,7 +3,7 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/ihah/webhook-notifier.svg?style=flat-square)](https://packagist.org/packages/ihah/webhook-notifier)
 [![Total Downloads](https://img.shields.io/packagist/dt/ihah/webhook-notifier.svg?style=flat-square)](https://packagist.org/packages/ihah/webhook-notifier)
 
-Packages allows to receive GitLab/Github webhook payloads for Laravel application and send notifications to multiple Slack/Discord channels based on payload type.
+Webhook-notifier package allows to receive GitLab/Github webhook payloads for Laravel application and send notifications to multiple Slack/Discord channels based on payload type.
 
 One configuration to control all process, easy to setup.
 
