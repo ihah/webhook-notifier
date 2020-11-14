@@ -27,6 +27,8 @@ php artisan vendor:publish --provider="Ihah\WebhookNotifier\WebhookNotifierServi
 **Add webhook notifier routes.**
 
 ```php
+use Ihah\WebhookNotifier\Services\WebhookNotifier;
+
 // Recommended routes add to routes/api.php
 WebhookNotifier::routes();
 

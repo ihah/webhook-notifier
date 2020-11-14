@@ -7,8 +7,11 @@
  * URL parameter contains secrets from your slack channel
  */
 return [
+
     'gitlab_token' => env('GITLAB_TOKEN'),
     'slack' => [
+        'prefix' => 'gitlab/notify/',
+        'middleware'=> [],
         'channels' => [
             'all' => [
                 [

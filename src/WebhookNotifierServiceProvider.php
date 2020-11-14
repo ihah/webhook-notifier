@@ -5,6 +5,7 @@ namespace Ihah\WebhookNotifier;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Ihah\WebhookNotifier\Services\WebhookNotifier;
+use Ihah\WebhookNotifier\Http\Middleware\GitlabMiddleware;
 
 class WebhookNotifierServiceProvider extends ServiceProvider
 {
@@ -13,7 +14,7 @@ class WebhookNotifierServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Route::mixin(new WebhookNotifierRouterMethods);
+        $this->registerRoutes();
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
@@ -27,12 +28,24 @@ class WebhookNotifierServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // Automatically apply the package configuration
-        $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'webhook-notifier');
-
         // Register the main class to use with the facade
         $this->app->singleton('WebhookNotifier', function () {
             return new WebhookNotifier;
         });
+    }
+
+    protected function registerRoutes()
+    {
+        Route::group($this->slackRouteConfiguration(), function () {
+            $this->loadRoutesFrom(__DIR__.'/../routes/slack.php');
+        });
+    }
+
+    protected function slackRouteConfiguration()
+    {
+        return [
+            'prefix' => config('webhook-notifier.slack.prefix'),
+            'middleware' => array_merge(config('webhook-notifier.slack.middleware'), [GitlabMiddleware::class]),
+        ];
     }
 }
