@@ -24,22 +24,18 @@ composer require ihah/webhook-notifier
 php artisan vendor:publish --provider="Ihah\WebhookNotifier\WebhookNotifierServiceProvider" --tag=config
 ```
 
-**Add webhook notifier routes.**
 
-```php
-use Ihah\WebhookNotifier\Services\WebhookNotifier;
-
-// Recommended routes add to routes/api.php
-WebhookNotifier::routes();
-
-// It is possible to define multi middlewares for all routes
-WebhookNotifier::routes(['middlewares' => ['api']]);
-```
 
 
 # Usage
 
 ## Gitlab + Slack
+
+By default gitlab notification webhook for slack is: 
+
+```
+domain.com/gitlab/notify/slack
+```
 
 1. Define `GITLAB_TOKEN` in .env file. 
 * `GITLAB_TOKEN` is used to check if request came from GitLab. 
@@ -56,6 +52,8 @@ WebhookNotifier::routes(['middlewares' => ['api']]);
 
 'gitlab_token' => env('GITLAB_TOKEN'),
     'slack' => [
+        'prefix' => 'gitlab/notify/',
+        'middleware'=> [],
         'channels' => [
             'all' => [
                 [
@@ -114,7 +112,7 @@ composer test
 
 **Other:**
 - [ ] Support events and listeners
-- [ ] Send notifications using queues  
+- [x] Send notifications using queues  
 
 
 ### Changelog
