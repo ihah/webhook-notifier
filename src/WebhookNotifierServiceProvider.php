@@ -44,8 +44,8 @@ class WebhookNotifierServiceProvider extends ServiceProvider
     protected function slackRouteConfiguration()
     {
         return [
-            'prefix' => config('webhook-notifier.slack.prefix'),
-            'middleware' => array_merge(config('webhook-notifier.slack.middleware'), [GitlabMiddleware::class]),
+            'prefix' => config('webhook-notifier.slack.prefix', ''),
+            'middleware' => array_merge(config('webhook-notifier.slack.middleware', []), [GitlabMiddleware::class]),
         ];
     }
 }
